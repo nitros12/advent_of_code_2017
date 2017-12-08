@@ -1,14 +1,13 @@
 #lang racket
 
+(require utils)
+
 (define (rotate-left l n)
   (let-values ([(a b) (split-at l n)])
     (append b a)))
 
 (define (extend l)
   (cons (car l) (reverse l)))
-
-(define (string->listofnum str)
-  (map (lambda (x) ((char->integer x) . - . (char->integer #\0))) (string->list str)))
 
 (define (calculate-1 inp)
   (let loop ([sum 0]
