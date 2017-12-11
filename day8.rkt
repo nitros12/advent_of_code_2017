@@ -4,14 +4,7 @@
 
 (define instr-regex #px"(\\w+) (inc|dec) (-?\\d+) if (\\w+) ([<>!=]=?) (-?\\d+)")
 
-(struct instr
-  (reg
-   op
-   num
-   cmpreg
-   cmpop
-   comp)
-  #:transparent)
+(struct instr (reg op num cmpreg cmpop comp) #:transparent)
 
 (define (!= . a) (not (apply = a)))
 

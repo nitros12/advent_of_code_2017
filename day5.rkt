@@ -39,11 +39,10 @@
 (define (solve-1 lst)
   (let loop ([t (tape null (car lst) (cdr lst))]
              [n 1])
-    (cond
-      [(should-exit t) n]
-      [else (loop (tape-rotate (tape-current t)
-                               (tape-addn 1 t))
-                  (add1 n))])))
+    (if (should-exit t) n
+        (loop (tape-rotate (tape-current t)
+                           (tape-addn 1 t))
+              (add1 n)))))
 
 (define (solution-1 str)
   (solve-1 (map string->number (string-split str))))
@@ -51,11 +50,10 @@
 (define (solve-2 lst)
   (let loop ([t (tape null (car lst) (cdr lst))]
              [n 1])
-    (cond
-      [(should-exit t) n]
-      [else (loop (tape-rotate (tape-current t)
-                               (tape-addn (if ((tape-current t) . >= . 3) -1 1) t))
-                  (add1 n))])))
+    (if (should-exit t) n
+        (loop (tape-rotate (tape-current t)
+                           (tape-addn (if ((tape-current t) . >= . 3) -1 1) t))
+              (add1 n)))))
 
 (define (solution-2 str)
   (solve-2 (map string->number (string-split str))))
