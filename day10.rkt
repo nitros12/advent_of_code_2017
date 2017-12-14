@@ -59,6 +59,16 @@
   (for/list ([i (chunk lst 16)])
     (apply bitwise-xor i)))
 
+(define (knot-hash str)
+  (sparse->dense
+   (solve-1-2
+    (duplicate
+     (append
+      (map char->integer (string->list str))
+      '(17 31 73 47 23))
+     64)
+    256)))
+
 (define (solution-2 inp)
   (let* ([sparse-hash
          (solve-1-2 (duplicate
